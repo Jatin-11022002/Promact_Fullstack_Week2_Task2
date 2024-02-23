@@ -2,7 +2,7 @@
 
 Follow the below steps for setting up the application and using it to generate PDF for any valid URL
 
--Step 1: Clone the repository in your local by using below command
+* Step 1: Clone the repository in your local by using below command
 
 '''
 git clone  https://github.com/Jatin-11022002/Promact_Fullstack_Week2_Task2.git
