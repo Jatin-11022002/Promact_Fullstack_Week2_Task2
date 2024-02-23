@@ -9,7 +9,6 @@ const path = require("path");
 // Function to generate PDF from provided URL
 const generatePDF = async (req, res) => {
   try {
-    console.log(req.body); // Log request body for debugging purposes
     let { url } = req.body; // Extract URL from request body
     let fileName = Date.now(); // Generate a unique file name based on current timestamp
     // Convert URL to PDF using ConvertAPI
@@ -34,17 +33,13 @@ const generatePDF = async (req, res) => {
           .then((res) => {
             return "resp"; // Return a response indicating success
           });
-        console.log(resp); // Log the response
         return "done2"; // Return a response indicating success
       })
       .catch((error) => {
-        console.log("some error"); // Log error if conversion fails
         throw Error(error); // Throw an error to be caught by the catch block
       });
-    console.log(result); // Log the result of PDF generation process
     res.json({ status: "success", fileName }); // Respond with success status and generated file name
   } catch (error) {
-    console.log("error", error.message); // Log and handle any errors that occur during PDF generation
     return res.json({ status: "error", message: error.message }); // Respond with error status and error message
   }
 };
@@ -55,7 +50,7 @@ const downloadPDF = (req, res) => {
     const pdfPath = path.join(__dirname, "../public", req.params.fileName); // Construct path to the PDF file
     res.download(pdfPath); // Download the PDF file
   } catch (error) {
-    console.log(error); // Log and handle any errors that occur during PDF download
+    res.send("some error occured");
   }
 };
 

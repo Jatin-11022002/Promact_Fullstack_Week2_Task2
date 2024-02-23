@@ -91,7 +91,7 @@ function App() {
       const pdfUrl = `${backend_url}/${fileName}.pdf`;
       setPdfUrl(pdfUrl); // Set PDF URL state
     } catch (error) {
-      console.log(error);
+      toast.error(error);
     }
   };
 
@@ -103,7 +103,7 @@ function App() {
       setDownloadUrl(fileUrl); // Set download URL state
       return fileUrl;
     } catch (error) {
-      console.log(error);
+      toast.error(error);
     }
   };
 
