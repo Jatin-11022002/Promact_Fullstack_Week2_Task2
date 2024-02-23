@@ -1,66 +1,29 @@
+// Load environment variables from .env file
 require("dotenv").config();
+
+// Import required modules
 const express = require("express");
 var cors = require("cors");
 const app = express();
 const path = require("path");
 const router = require("./routes");
 
+// Enable Cross-Origin Resource Sharing (CORS)
 app.use(cors());
+
+// Parse incoming JSON requests
 app.use(express.json());
+
+// Parse URL-encoded requests with extended options
 app.use(express.urlencoded({ extended: true }));
+
+// Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, "public")));
+
+// Mount the router middleware for handling routes
 app.use("/", router);
 
-// app.post("/convert", async (req, res) => {
-//   try {
-//     console.log(req.body);
-//     let { url } = req.body;
-//     let fileName = Date.now();
-//     let result = await convertapi
-//       .convert(
-//         "pdf",
-//         {
-//           Url: url,
-//           PageRange: "1-2",
-//           ConversionDelay: "2",
-//           LoadLazyContent: "true",
-//           ViewportWidth: "1800",
-//           ViewportHeight: "2200",
-//           Scale: "80",
-//         },
-//         "web"
-//       )
-//       .then(async function (result) {
-//         console.log(result.Url);
-//         const resp = await result
-//           .saveFiles(`./public/${fileName}.pdf`)
-//           .then((res) => {
-//             console.log("done saving");
-//             return "resp";
-//           });
-//         console.log(resp);
-//         return "done2";
-//       })
-//       .catch((error) => {
-//         console.log("some error");
-//         throw Error(error);
-//       });
-//     console.log(result);
-//     res.json({ status: "success", fileName });
-//   } catch (error) {
-//     console.log("error", error.message);
-//     return res.json({ status: "error", message: error.message });
-//   }
-// });
-
-// app.get("/getFile/:fileName", (req, res) => {
-//   console.log(req.params);
-//   // const pdfPath = path.join("./public", req.params.fileName);
-//   const pdfPath = path.join(__dirname, "public", req.params.fileName);
-//   console.log(pdfPath);
-//   res.download(pdfPath);
-// });
-
+// Start the server, listening on the specified port or defaulting to port 8000
 app.listen(process.env.APP_PORT || 8000, () => {
   console.log("SERVER STARTED");
 });

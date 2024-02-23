@@ -1,29 +1,32 @@
 import React, { useEffect, useState } from "react";
 import "./App.css"; // Import your CSS file for styling
-import { ThreeDots } from "react-loader-spinner";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+import { ThreeDots } from "react-loader-spinner"; // Import loader spinner component
+import { ToastContainer, toast } from "react-toastify"; // Import toast notifications component
+import "react-toastify/dist/ReactToastify.css"; // Import toast notifications styles
+import axios from "axios"; // Import Axios for making HTTP requests
 
 function App() {
+  // State variables to manage URL input, PDF URL, loading status, and download URL
   const [url, setUrl] = useState("");
   const [pdfUrl, setPdfUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState("");
-  const backend_url = import.meta.env.VITE_BACKEND_URL;
+  const backend_url = import.meta.env.VITE_BACKEND_URL; // Backend URL obtained from environment variable
 
+  // useEffect hook to generate PDF when loading state changes
   useEffect(() => {
-    // return;
     if (loading) {
       generatePdf();
     }
   }, [loading]);
 
+  // useEffect hook to download PDF when pdfUrl state changes
   useEffect(() => {
-    if (pdfUrl == "") return;
+    if (pdfUrl === "") return;
     downloadPdf();
   }, [pdfUrl]);
 
+  // Function to validate URL format
   const isValidUrl = (url) => {
     const urlPattern =
       /^(https?):\/\/(?:www\.)?([a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+)(\/[^ "]+)?$/;
@@ -56,49 +59,49 @@ function App() {
     return "valid";
   };
 
+  // Function to generate PDF from URL
   const generatePdf = async () => {
     try {
+      // Validate URL
       const isValidUrlMessage = isValidUrl(url);
       if (isValidUrlMessage !== "valid") {
         toast.error(isValidUrlMessage);
         setPdfUrl("");
         return;
       }
-      let { data } = await axios.post(`${backend_url}/convert`, { url });
-      let { status, message, fileName } = data;
+      // Make POST request to backend to generate PDF
+      const { data } = await axios.post(`${backend_url}/convert`, { url });
+      const { status, message, fileName } = data;
       if (status === "error") {
         throw Error(message);
       } else {
-        console.log(status, "rendering now");
+        // Render generated PDF
         renderPdf(fileName);
       }
     } catch (error) {
       toast.error(error.message);
     } finally {
-      setLoading(false);
+      setLoading(false); // Set loading state to false
     }
   };
 
+  // Function to render PDF
   const renderPdf = async (fileName) => {
     try {
-      console.log(fileName);
-      let url = `${backend_url}/${fileName}.pdf`;
-      setPdfUrl(url);
-      //downloadPdf();
+      const pdfUrl = `${backend_url}/${fileName}.pdf`;
+      setPdfUrl(pdfUrl); // Set PDF URL state
     } catch (error) {
       console.log(error);
     }
   };
 
+  // Function to download PDF
   const downloadPdf = async () => {
     try {
-      console.log("called", pdfUrl);
-      let url = new URL(pdfUrl);
-      let fileUrl = `${url.origin}/getFile${url.pathname}`;
-      console.log(fileUrl);
-      setDownloadUrl(fileUrl);
+      const urlObj = new URL(pdfUrl);
+      const fileUrl = `${urlObj.origin}/getFile${urlObj.pathname}`;
+      setDownloadUrl(fileUrl); // Set download URL state
       return fileUrl;
-      //let result = await fetch(fileUrl);
     } catch (error) {
       console.log(error);
     }
@@ -106,6 +109,7 @@ function App() {
 
   return (
     <>
+      {/* Toast container for displaying notifications */}
       <ToastContainer
         position="top-center"
         autoClose={3000}
@@ -118,13 +122,18 @@ function App() {
         pauseOnHover
         theme="colored"
       />
+      {/* Main wrapper */}
       <div className="wrapper">
+        {/* Header */}
         <div className="head-wrapper">
           <h1>Web To PDF</h1>
         </div>
+        {/* Main container */}
         <div className="container">
+          {/* Input column */}
           <div className="input-column">
             <h2>Website URL</h2>
+            {/* Input field for entering URL */}
             <input
               type="text"
               value={url}
@@ -132,13 +141,14 @@ function App() {
               placeholder="Enter URL"
               className="url-input"
             />
+            {/* Button to generate PDF */}
             <button
               onClick={() => setLoading(true)}
               className={loading ? "disabled btn" : "btn"}
             >
               Generate PDF
             </button>
-
+            {/* Button to download PDF */}
             {downloadUrl && !loading ? (
               <a href={downloadUrl} className="btn-link">
                 <button className="btn" disabled={loading}>
@@ -149,7 +159,9 @@ function App() {
               ""
             )}
           </div>
+          {/* PDF column */}
           <div className="pdf-column">
+            {/* Loader spinner while loading */}
             {loading ? (
               <ThreeDots
                 height="100"
@@ -160,12 +172,14 @@ function App() {
                 secondaryColor="black"
               />
             ) : pdfUrl ? (
+              /* Display PDF in iframe */
               <iframe
                 title="Generated PDF"
                 src={pdfUrl}
                 className="pdf-preview"
               ></iframe>
             ) : (
+              /* Placeholder text when no PDF generated */
               <h1 className="placeholder">Nothing To Display</h1>
             )}
           </div>

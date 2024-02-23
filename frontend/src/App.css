@@ -1,133 +1,171 @@
+/* Global styles */
+/* Apply box-sizing border-box model to all elements */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Main wrapper styles */
+/* Set the main wrapper to occupy the full viewport height */
 .wrapper {
   width: 100%;
   height: 100vh;
   background-color: #333;
-  padding: 7px;
-  overflow: hidden;
+  padding: 7px; /* Add padding to prevent content from sticking to the edges */
+  overflow: hidden; /* Hide any overflow content */
 }
 
+/* Header wrapper styles */
+/* Style the header wrapper */
 .head-wrapper {
-  background-color: #4b4a4a;
-  height: 10vh;
-  max-width: 100%;
-  display: flex;
-  align-items: center;
-  margin: 0 20px;
-  border-radius: 8px;
+  background-color: #4b4a4a; /* Set background color */
+  height: 10vh; /* Set height of the header */
+  max-width: 100%; /* Ensure the header spans the full width of its container */
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center items vertically */
+  margin: 0 20px; /* Add margin to create space around the header */
+  border-radius: 8px; /* Add rounded corners */
 }
 
+/* Header title styles */
+/* Style the header title */
 .head-wrapper h1 {
-  text-align: center;
-  color: #eeeded;
-  width: 100%;
+  text-align: center; /* Center align the text */
+  color: #eeeded; /* Set text color */
+  width: 100%; /* Ensure the title spans the full width of its container */
 }
 
+/* Main container styles */
+/* Style the main container */
 .container {
-  display: flex;
-  width: 100%;
-  height: 90vh;
-  justify-content: space-between;
+  display: flex; /* Use flexbox for layout */
+  width: 100%; /* Ensure the container spans the full width of its container */
+  height: 90vh; /* Set height of the container */
+  justify-content: space-between; /* Space elements evenly along the main axis */
   align-items: flex-start; /* Align items to the top */
-  padding: 20px;
-  gap: 16px;
+  padding: 20px; /* Add padding to create space around the container */
+  gap: 16px; /* Set the gap between child elements */
 }
 
+/* Styles for the input column and PDF column */
+/* Common styles for input column and PDF column */
 .input-column,
 .pdf-column {
-  background-color: #4b4a4a;
-  color: #eeeded;
-  padding: 20px;
-  border-radius: 8px;
+  background-color: #4b4a4a; /* Set background color */
+  color: #eeeded; /* Set text color */
+  padding: 20px; /* Add padding */
+  border-radius: 8px; /* Add rounded corners */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
 }
 
+/* Styles for the input column */
+/* Style the input column */
 .input-column {
-  width: 35%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
+  width: 35%; /* Set width of the input column */
+  height: 100%; /* Ensure the input column spans the full height of its container */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Arrange child elements in a column */
+  justify-content: center; /* Center child elements vertically */
+  gap: 20px; /* Set the gap between child elements */
 }
 
+/* Styles for the PDF column */
+/* Style the PDF column */
 .pdf-column {
-  width: 65%;
-  height: 100%;
+  width: 65%; /* Set width of the PDF column */
+  height: 100%; /* Ensure the PDF column spans the full height of its container */
 }
 
+/* Heading styles for input column */
+/* Style the headings within the input column */
 .input-column h2 {
-  font-size: 24px;
+  font-size: 24px; /* Set font size */
 }
 
+/* URL input field styles */
+/* Style the URL input field */
 .url-input {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 12px;
+  width: 100%; /* Set width to fill the available space */
+  padding: 12px; /* Add padding */
+  font-size: 16px; /* Set font size */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 4px; /* Add rounded corners */
+  margin-bottom: 12px; /* Add margin to separate from other elements */
 }
 
+/* Button styles */
+/* Style the buttons */
 .btn {
-  padding: 15px 24px;
-  background-color: #302d2d;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 100%;
+  padding: 15px 24px; /* Add padding */
+  background-color: #302d2d; /* Set background color */
+  color: #fff; /* Set text color */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Add rounded corners */
+  font-size: 16px; /* Set font size */
+  cursor: pointer; /* Set cursor to pointer */
+  transition: background-color 0.3s; /* Add transition effect */
+  width: 100%; /* Set width to fill the available space */
 }
 
+/* Button hover styles */
+/* Style the buttons on hover */
 .btn:hover {
-  background-color: #3f3f3f; /* Darker shade of primary color on hover */
+  background-color: #3f3f3f; /* Darker shade of primary color */
 }
 
+/* Disabled button styles */
+/* Style the disabled buttons */
 .disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
+  cursor: not-allowed; /* Set cursor to not-allowed */
+  opacity: 0.5; /* Reduce opacity */
 }
 
+/* Disabled button hover styles */
+/* Style the disabled buttons on hover */
 .disabled:hover {
-  background-color: #302d2d;
+  background-color: #302d2d; /* Set background color */
 }
 
+/* PDF preview container styles */
+/* Style the PDF preview container */
 .pdf-preview {
-  width: 100%;
-  height: 100%; /* Adjust height as needed */
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  width: 100%; /* Set width to fill the available space */
+  height: 100%; /* Set height to fill the available space */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 4px; /* Add rounded corners */
 }
 
+/* Spinner container styles */
+/* Style the spinner container */
 .spinner {
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  background-color: #333;
-  border-radius: 8px;
+  width: 100%; /* Set width to fill the available space */
+  height: 100%; /* Set height to fill the available space */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  background-color: #333; /* Set background color */
+  border-radius: 8px; /* Add rounded corners */
 }
 
+/* Placeholder text styles */
+/* Style the placeholder text */
 .placeholder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  color: #eeeded;
+  display: flex; /* Use flexbox for layout */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  height: 100%; /* Set height to fill the available space */
+  color: #eeeded; /* Set text color */
 }
 
+/* CSS animation for spinner */
+/* Define the spinner animation */
 @keyframes spin {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(0deg); /* Start rotation from 0 degrees */
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(
+      360deg
+    ); /* End rotation at 360 degrees (one full rotation) */
   }
 }

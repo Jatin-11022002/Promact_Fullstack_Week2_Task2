@@ -1,12 +1,15 @@
+// Import the Express framework
 const express = require("express");
+
+// Create a new router instance
 const router = express.Router();
-const {downloadPDF,generatePDF} =require('./controllers/pdf-actions.js')
 
+// Import the controller functions for handling PDF actions
+const { downloadPDF, generatePDF } = require("./controllers/pdf-actions.js");
 
-router.route("/convert").post(generatePDF);
+// Define routes for PDF conversion and file download
+router.route("/convert").post(generatePDF); // Endpoint for generating PDF from URL
+router.route("/getFile/:fileName").get(downloadPDF); // Endpoint for downloading generated PDF file
 
-router.route("/getFile/:fileName").get(downloadPDF)
-
-
-
-module.exports=router
+// Export the router for use in other modules
+module.exports = router;
