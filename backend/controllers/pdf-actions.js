@@ -23,6 +23,7 @@ const generatePDF = async (req, res) => {
           ViewportWidth: "1800",
           ViewportHeight: "2200",
           Scale: "80",
+          Timeout:"800"
         },
         "web"
       )
